@@ -6,6 +6,7 @@ import cors from "cors";
 import db from "./config/database.js";
 // Import router
 import Router from "./routes/routes.js";
+import AuthRouter from "./routes/auth.js";
  
 // Init express
 const app = express();
@@ -13,7 +14,7 @@ const app = express();
 // use express json
 app.use(express.json());
 
-// var corsOptions = {
+// var corsOptions = 
 //   origin: 'http://example.com',
 // }
 
@@ -30,6 +31,9 @@ try {
  
 // use router
 app.use(Router);
+app.use(AuthRouter);
+
+const PORT = process.env.PORT || 4000;
  
 // listen on port
-app.listen(4000, () => console.log('Server running at http://localhost:4000'));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -8,12 +8,13 @@ import {
     updateSchool,
     deleteSchool
  } from "../controllers/schools.js";
+import { isUserAuthenticated } from "../middlewares/auth.js";
  
  // Init express router
 const router = express.Router();
  
 // Route get all schools
-router.get('/schools', getSchools);
+router.get('/schools', [isUserAuthenticated], getSchools);
 // Route get product by id
 router.get('/schools/:id', getSchoolById);
 // Route create a new product
