@@ -7,7 +7,10 @@
   "target": "es2015",
   "scripts": {
     "start": "nodemon app.js",
-    "test": "cross-env ENV=test mocha ./__tests__/*"
+    "test": "cross-env ENV=test mocha ./__tests__/*",
+    "pretest": "cross-env NODE_ENV=test npm run db:reset",
+    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate",
+    "db:create:test": "cross-env NODE_ENV=test npx sequelize-cli db:create"
   },
   "author": "",
   "license": "ISC",

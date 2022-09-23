@@ -7,9 +7,15 @@ import db from "./config/database.js";
 // Import router
 import Router from "./routes/routes.js";
 import AuthRouter from "./routes/auth.js";
+import dotenv from 'dotenv';
+
  
 // Init express
 const app = express();
+
+dotenv.config();
+
+console.log(process.env.ENV);
 
 // use express json
 app.use(express.json());

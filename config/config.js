@@ -1,6 +1,3 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const config = {
   development: {
@@ -11,11 +8,11 @@ const config = {
     dialect: 'postgres',
   },
   test: {
-    username: process.env.DB_TEST_USER,
-    password: process.env.DB_TEST_PASSWORD,
-    database: process.env.DB_TEST_DB_NAME,
-    host: process.env.DB_TEST_HOST,
-    port: process.env.DB_TEST_PORT,
+    username: process.env.DB_TEST_USER || 'larnu',
+    password: process.env.DB_TEST_PASSWORD || 'larnuisgold',
+    database: process.env.DB_TEST_DB_NAME || 'larnu_demo_test',
+    host: process.env.DB_TEST_HOST || '127.0.0.1',
+    port: process.env.DB_TEST_PORT || 5432,
     dialect: 'postgres',
   },
   production: {
