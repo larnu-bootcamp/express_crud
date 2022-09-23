@@ -1,16 +1,17 @@
 import { Sequelize } from "sequelize";
 
+import _config from "../config/config.js";
+
+const config = _config[process.env.ENV];
 // create connection
 const db = new Sequelize(
-  'larnu_demo',
-  'larnu',
-  'larnuisgold', {
-  host: 'localhost',
-  dialect: 'postgres',
-  port: 5432,
-  define: {
-    timestamps: false
+  config.database,
+  config.username,
+  config.password,
+  {
+    host: config.host,
+    dialect: 'postgres',
   }
-});
+);
 
 export default db;
