@@ -6,6 +6,7 @@ const { expect } = chai;
 
 
 describe('Test the auth endpoints', () => {
+
   it('should allow to create users', async () => {
     const payload = {
       'name': 'teast',
@@ -13,8 +14,20 @@ describe('Test the auth endpoints', () => {
       'password': '123456'
     }
     const { body, status } = await request(app).post('/auth/register').send(payload);
-    const { data } = body;
-    console.log(data);
+    console.log(body);
     expect(status).to.equal(201);
+  });
+
+  it('should allow to login', async () => {
+    const payload = {
+      'email': 'josae@email.com',
+      'password': '123456'
+    }
+    const { body, status } = await request(app)
+      .post('/auth/login')
+      .type("json")
+      .send(payload);
+    console.log(body);
+    expect(status).to.equal(200);
   });
 });
