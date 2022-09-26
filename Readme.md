@@ -39,4 +39,6 @@ npx sequelize-cli db:migrate
 npx sequelize-cli db:migrate:undo:all 
 # para eliminar las migraciones hasta un punto
 npx sequelize-cli db:migrate:undo:all --to XXXXXXXXXXXXXXX-create-room.js 
+# crear modelos desde el cli
+npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string, email:string
 ```

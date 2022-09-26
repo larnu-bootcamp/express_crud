@@ -7,7 +7,7 @@ import db from "../config/database.js";
 const { DataTypes } = Sequelize;
  
 // Define schema
-const User = db.define('user', {
+const Room = db.define('room', {
   // Define attributes
   id: {
     type: DataTypes.INTEGER,
@@ -17,24 +17,14 @@ const User = db.define('user', {
   name: {
     type: DataTypes.STRING
   },
-  lastName: {
-    type: DataTypes.STRING,
-    field: 'last_name'
-  },
-  email: {
-    type: DataTypes.STRING,
-  },
-  password: {
-    type: DataTypes.STRING
-  },
   createdOn: {
     type: DataTypes.DATE,
-    defaultValue: Sequelize.NOW,
-    field: 'created_on'
+    field: 'created_on',
+    defaultValue: Sequelize.NOW
   }
 },{
-  tableName: 'user'
+  tableName: 'room'
 });
  
-// Export model User
-export default User;
+// Export model Room
+export default Room;

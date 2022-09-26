@@ -3,17 +3,17 @@ import express from "express";
 // Import cors
 import cors from "cors";
 // Import connection
-import db from "./config/database.js";
 // Import router
 import Router from "./routes/routes.js";
 import AuthRouter from "./routes/auth.js";
-import dotenv from 'dotenv';
+import db from "./config/database.js";
+
 
  
 // Init express
 const app = express();
 
-dotenv.config();
+
 
 console.log(process.env.ENV);
 
@@ -27,13 +27,13 @@ app.use(express.json());
 // use cors
 app.use(cors());
  
-// Testing database connection 
-// try {
-//     await db.authenticate();
-//     console.log('Connection has been established successfully.');
-// } catch (error) {
-//     console.error('Unable to connect to the database:', error);
-// }
+//Testing database connection 
+try {
+    await db.authenticate();
+    console.log('Connection has been established successfully.');
+} catch (error) {
+    console.error('Unable to connect to the database:', error);
+}
  
 // use router
 app.use(Router);

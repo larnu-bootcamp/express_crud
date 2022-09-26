@@ -2,9 +2,10 @@ import { Sequelize } from "sequelize";
 
 import _config from "../config/config.js";
 
-const config = _config[process.env.ENV];
+const env = process.env.ENV;
+const config = _config[env];
+
 // create connection
-console.log(config);
 const db = new Sequelize(
   config.database,
   config.username,

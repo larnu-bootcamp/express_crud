@@ -5,6 +5,24 @@ import bcrypt from 'bcryptjs';
 
 export const register = async (req, res) => {
   try {
+    if (!req.body.email || !req.body.password || !req.body.name) {
+      return res.status(400).send({
+        message: "email, password and name are required"
+      });
+    }
+
+    if (req.body.password.length < 6) {
+      return res.status(400).send({
+        message: "password must be at least 6 characters"
+      });
+    }
+
+    if (!req.body.email.includes('@')) {
+      return res.status(400).send({
+        message: "email must contain @ character"
+      });
+    }
+
     const user = await User.create({
       name: req.body.name,
       email: req.body.email,
@@ -12,7 +30,7 @@ export const register = async (req, res) => {
     });
     res.status(201).json({
       "message": "User Created",
-      "userid": user.id
+      "userId": user.id
     });
   } catch (err) {
     console.log(err);
