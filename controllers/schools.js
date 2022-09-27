@@ -29,9 +29,10 @@ export const getSchoolById = async (req, res) => {
 // Create a new school
 export const createSchool = async (req, res) => {
     try {
-        await School.create(req.body);
-        res.json({
-            "message": "School Created"
+        const school = await School.create(req.body);
+        res.status(201).json({
+            "message": "School Created",
+            "id": school.id
         });
     } catch (err) {
         console.log(err);

@@ -13,6 +13,7 @@ const db = new Sequelize(
   {
     host: config.host,
     dialect: 'postgres',
+    logging: config.logging,
     define: {
       timestamps: false
     }

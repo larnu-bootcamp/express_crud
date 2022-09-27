@@ -7,6 +7,7 @@ const config = {
     password: process.env.DB_DEV_PASSWORD,
     database: process.env.DB_DEV_DB_NAME,
     host: process.env.DB_DEV_HOST,
+    logging: true,
     dialect: 'postgres',
   },
   test: {
@@ -15,6 +16,7 @@ const config = {
     database: process.env.DB_TEST_DB_NAME || 'larnu_demo_test',
     host: process.env.DB_TEST_HOST || '127.0.0.1',
     port: process.env.DB_TEST_PORT || 5432,
+    logging: false,
     dialect: 'postgres',
   },
   production: {
@@ -22,6 +24,7 @@ const config = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DB_NAME,
     host: process.env.DB_HOST,
+    logging: false,
     dialect: 'postgres',
   },
 };
