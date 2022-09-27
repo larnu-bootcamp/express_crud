@@ -8,12 +8,8 @@ import Router from "./routes/routes.js";
 import AuthRouter from "./routes/auth.js";
 import db from "./config/database.js";
 
-
- 
 // Init express
 const app = express();
-
-
 
 console.log(process.env.ENV);
 
