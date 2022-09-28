@@ -30,7 +30,7 @@ export const getSchoolById = async (req, res) => {
 export const createSchool = async (req, res) => {
     try {
         const school = await School.create(req.body);
-        res.status(201).json({
+        res.status(200).json({
             "message": "School Created",
             "id": school.id
         });
