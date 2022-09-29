@@ -1,0 +1,69 @@
+name: Express.js CD
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: larnu
+          POSTGRES_PASSWORD: larnuisgold
+          POSTGRES_DB: larnu_demo_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+            - 5432:5432
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "17.8"
+
+      - name: Installing Dependencies
+        run: npm i
+
+      - name: testing our app
+        run: npm test
+  migrations:
+    needs: [test]
+    runs-on: ubuntu-latest
+    env:
+      DB_DEV_USER: ${{ secrets.DB_USERNAME }}
+      DB_DEV_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_DEV_DB_NAME: ${{ secrets.DB_DATABASE }}
+      DB_DEV_HOST: ${{ secrets.DB_HOST }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "17.8"
+
+      - name: Installing Dependencies
+        run: npm i
+
+      - name: create db if it does not exist
+        run: npx sequelize-cli db:create
+
+      - name: run migrations
+        run: npx sequelize-cli db:migrate
+  deploy:
+    needs: [test, migrations]
+    steps:
+      - name: call render hook
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: ${{ secrets.RENDER_HOOK }}
+          method: 'GET'

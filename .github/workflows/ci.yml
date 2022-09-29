@@ -1,13 +1,7 @@
 name: Express.js CI
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
-
-env:
-  POSTGRES_HOST: localhost
-  POSTGRES_PORT: 5432
 
 jobs:
   test:
