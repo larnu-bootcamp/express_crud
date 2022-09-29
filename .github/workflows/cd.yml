@@ -34,33 +34,8 @@ jobs:
 
       - name: testing our app
         run: npm test
-  migrations:
-    needs: [test]
-    runs-on: ubuntu-latest
-    env:
-      DB_DEV_USER: ${{ secrets.DB_USERNAME }}
-      DB_DEV_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      DB_DEV_DB_NAME: ${{ secrets.DB_DATABASE }}
-      DB_DEV_HOST: ${{ secrets.DB_HOST }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: "17.8"
-
-      - name: Installing Dependencies
-        run: npm i
-
-      - name: create db if it does not exist
-        run: npx sequelize-cli db:create
-
-      - name: run migrations
-        run: npx sequelize-cli db:migrate
   deploy:
-    needs: [test, migrations]
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - name: call render hook
