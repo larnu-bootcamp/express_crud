@@ -44,5 +44,5 @@ jobs:
         with:
           email: jose.zunigahenriquez@gmail.com
           password: larnutesting
-          token: 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
+          token: ${{ secrets.GITHUB_TOKEN }}
           service-id: srv-ccqqllkgqg4cmrhnojng
