@@ -36,8 +36,9 @@ jobs:
         run: npm test
   deploy:
     needs: [test]
-    - name: call render hook
-      uses: fjogeleit/http-request-action@v1
-      with:
-        url: ${{ secrets.RENDER_HOOK }}
-        method: 'GET'
+    steps:
+      - name: call render hook
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: ${{ secrets.RENDER_HOOK }}
+          method: 'GET'
