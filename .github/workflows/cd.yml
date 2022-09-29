@@ -36,10 +36,13 @@ jobs:
         run: npm test
   deploy:
     needs: [test]
-    runs-on: ubuntu-latest
+    name: Wait for Deploy
+    runs-on: ubuntu-18.04
     steps:
-      - name: call render hook
-        uses: fjogeleit/http-request-action@v1
+      - name: Wait for Render Deployment
+        uses: bounceapp/render-action@0.2.0
         with:
-          url: ${{ secrets.RENDER_HOOK }}
-          method: 'GET'
+          email: jose.zunigahenriquez@gmail.com
+          password: larnutesting
+          token: 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
+          service-id: srv-ccqqllkgqg4cmrhnojng
