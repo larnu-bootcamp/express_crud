@@ -1,6 +1,6 @@
-name: Express.js CI
+name: Express.js CD
 on:
-  pull_request:
+  push:
     branches: [ main ]
 
 jobs:
@@ -34,3 +34,10 @@ jobs:
 
       - name: testing our app
         run: npm test
+  deploy:
+    needs: [test]
+    - name: call render hook
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: ${{ secrets.RENDER_HOOK }}
+        method: 'GET'
