@@ -61,6 +61,7 @@ jobs:
         run: npx sequelize-cli db:migrate
   deploy:
     needs: [test, migrations]
+    runs-on: ubuntu-latest
     steps:
       - name: call render hook
         uses: fjogeleit/http-request-action@v1
