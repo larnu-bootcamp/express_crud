@@ -39,7 +39,7 @@ jobs:
     name: Wait for Deploy
     runs-on: ubuntu-18.04
     steps:
-      - name: call render hook
+      - name: call render webhook
         uses: fjogeleit/http-request-action@v1
         with:
           url: ${{ secrets.RENDER_HOOK }}

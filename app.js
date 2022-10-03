@@ -7,6 +7,7 @@ import cors from "cors";
 import Router from "./routes/routes.js";
 import AuthRouter from "./routes/auth.js";
 import db from "./config/database.js";
+import helmet from "helmet";
 
 // Init express
 const app = express();
@@ -16,9 +17,8 @@ console.log(process.env.ENV);
 // use express json
 app.use(express.json());
 
-// var corsOptions = 
-//   origin: 'http://example.com',
-// }
+//set appropriate HTTP headers that help protect your app from well-known web vulnerabilities
+app.use(helmet());
 
 // use cors
 app.use(cors());
