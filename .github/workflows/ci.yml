@@ -35,4 +35,4 @@ jobs:
         run: docker build --file .docker/test/Dockerfile -t test_container .
       
       - name: run docker tests 
-        run: docker run test_container
+        run: docker run --network="host" test_container
