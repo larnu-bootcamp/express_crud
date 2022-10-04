@@ -35,4 +35,5 @@ jobs:
         run: docker build --file .docker/test/Dockerfile -t test_container .
       
       - name: run docker tests 
+        # network host es para que nuestro container corra en host 
         run: docker run --network="host" test_container
