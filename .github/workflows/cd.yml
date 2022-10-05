@@ -24,16 +24,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: "17.8"
-
-      - name: Installing Dependencies
-        run: npm i
-
-      - name: testing our app
-        run: npm test
+      - name: Build the Docker image
+        run: docker build --file .docker/test/Dockerfile -t test_image .
+      
+      - name: run docker tests 
+        # network host es para que nuestro container corra en host 
+        run: docker run --network="host" test_image
   deploy:
     needs: [test]
     name: Wait for Deploy
