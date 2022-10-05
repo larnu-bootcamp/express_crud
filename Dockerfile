@@ -25,7 +25,7 @@ COPY . .
 # index.js
 # config/
 
-EXPOSE 8080
+EXPOSE 10000
 
 # Run the web service on container startup.
 CMD ["node", "index.js"]
