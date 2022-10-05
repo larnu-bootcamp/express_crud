@@ -4,7 +4,7 @@ on:
     branches: [ main ]
 
 jobs:
-  # linting - analisis de codigo estatico 
+  # linting - analisis de código estatico 
   # analisis de ciber seguridad
   # code smells sonarcube 
   # checkear que se pueda hacer build
@@ -35,4 +35,5 @@ jobs:
         run: docker build --file .docker/test/Dockerfile -t test_container .
       
       - name: run docker tests 
-        run: docker run test_container
+        # network host es para que nuestro container corra en host 
+        run: docker run --network="host" test_container

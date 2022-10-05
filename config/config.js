@@ -1,5 +1,11 @@
-import dotenv from 'dotenv';
-dotenv.config({ path: '.env' });
+
+function runDotEnv() {
+  if (process.env.ENV === 'development') {
+    import('dotenv').then(dotenv => dotenv.config({ path: '.env' }));
+  }
+}
+
+runDotEnv();
 
 const config = {
   development: {

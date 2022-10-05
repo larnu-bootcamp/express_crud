@@ -1,5 +1,4 @@
 .github
-__tests__
 node_modules
 Readme.md
 .env_sample
