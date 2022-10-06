@@ -32,8 +32,8 @@ jobs:
 
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        run: docker build --file .docker/test/Dockerfile -t test_container .
+        run: docker build --file .docker/test/Dockerfile -t test_image .
       
       - name: run docker tests 
         # network host es para que nuestro container corra en host 
-        run: docker run --network="host" test_container
+        run: docker run --network="host" test_image
