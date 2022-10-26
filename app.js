@@ -10,7 +10,7 @@ import db from "./config/database.js";
 import helmet from "helmet";
 
 // Init express
-const app = express(); 
+const app = express();
 
 console.log(process.env.ENV);
 
