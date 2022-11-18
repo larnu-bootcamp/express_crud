@@ -15,7 +15,7 @@ describe('Test the auth endpoints', () => {
       'password': '123456'
     }
     const { body, status } = await request(app).post('/auth/register').send(payload);
-    expect(status).to.equal(201);
+    expect(status).to.equal(202);
 
     // check the userId
     expect(body).to.have.property('userId');
